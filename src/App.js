@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
 import "./App.css";
 import Home from "./components/Home";
@@ -103,7 +103,7 @@ class BooksApp extends React.Component {
 				foundBook.shelf = shelf;
 			}
 		} catch (error) {
-			console.log("entered the else statement");
+			// console.log("entered the else statement");
 			this.setState({
 				books: [...this.state.books, book],
 			});
@@ -139,26 +139,28 @@ class BooksApp extends React.Component {
 	render() {
 		return (
 			<div className="app">
-				<Route
-					exact
-					path="/"
-					render={() => (
-						<Home
-							books={this.state.books}
-							currentlyReading={this.state.currentlyReading}
-							wantToRead={this.state.wantToRead}
-							read={this.state.read}
-							moveBook={this.moveBook}
-						/>
-					)}
-				/>
-				<Route
-					exact
-					path="/search"
-					render={() => (
-						<Search books={this.state.books} moveBook={this.moveBook} />
-					)}
-				/>
+				<Switch>
+					<Route
+						exact
+						path="/"
+						render={() => (
+							<Home
+								books={this.state.books}
+								currentlyReading={this.state.currentlyReading}
+								wantToRead={this.state.wantToRead}
+								read={this.state.read}
+								moveBook={this.moveBook}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path="/search"
+						render={() => (
+							<Search books={this.state.books} moveBook={this.moveBook} />
+						)}
+					/>
+				</Switch>
 			</div>
 		);
 	}
