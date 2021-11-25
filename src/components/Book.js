@@ -1,16 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Book = (props) => {
+	console.log(props);
 	let author;
 	try {
-		author = props.book.author;
+		author = props.book.authors;
 	} catch (error) {
 		author = "No Authors";
 	}
 
 	let name;
 	try {
-		name = props.book.name;
+		name = props.book.title;
 	} catch (error) {
 		name = "";
 	}
@@ -40,7 +42,7 @@ const Book = (props) => {
 					/>
 					<div className="book-shelf-changer">
 						<select
-							defaultValue={props.shelf ? props.shelf : "none"}
+							value={props.book.shelf ? props.book.shelf : "none"}
 							onChange={(e) => props.moveBook(props.book, e.target.value)}
 						>
 							<option value="move" disabled>
