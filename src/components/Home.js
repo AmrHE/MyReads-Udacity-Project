@@ -56,4 +56,11 @@ const Home = (props) => {
 	);
 };
 
+Home.propTypes = {
+	currentlyReading: PropTypes.array,
+	wantToRead: PropTypes.array,
+	read: PropTypes.array,
+	movedBook: PropTypes.func,
+};
+
 export default Home;
