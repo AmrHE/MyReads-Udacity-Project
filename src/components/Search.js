@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import * as BooksAPI from "../BooksAPI";
 import Book from "./Book";
+import PropTypes from "prop-types";
 
 class Search extends Component {
 	state = {
@@ -11,7 +12,7 @@ class Search extends Component {
 	search = async (query) => {
 		if (query) {
 			const books = await BooksAPI.search(query);
-			console.log(books);
+			// console.log(books);
 			if (books && !books.error && books.length > 0) {
 				const booksWithShelves = books.map((book) => {
 					//if the book exists only change the shelf
@@ -72,5 +73,10 @@ class Search extends Component {
 		);
 	}
 }
+
+Search.propTypes = {
+	books: PropTypes.array,
+	movedBook: PropTypes.func,
+};
 
 export default Search;
