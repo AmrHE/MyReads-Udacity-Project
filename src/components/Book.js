@@ -62,4 +62,12 @@ const Book = (props) => {
 	);
 };
 
+Book.propTypes = {
+	authors: PropTypes.arrayOf(PropTypes.string),
+	title: PropTypes.string,
+	imageLinks: PropTypes.object,
+	shelf: PropTypes.string,
+	moveBook: PropTypes.func,
+};
+
 export default Book;
