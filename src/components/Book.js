@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Book = (props) => {
-	console.log(props);
+	// console.log(props);
 	let author;
 	try {
 		author = props.book.authors;

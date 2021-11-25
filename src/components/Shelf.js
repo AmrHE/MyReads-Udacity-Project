@@ -3,9 +3,9 @@ import Book from "./Book";
 import PropTypes from "prop-types";
 
 const Shelf = (props) => {
-	if (props.length > 0) {
-		console.log(props);
-	}
+	// if (props.length > 0) {
+	// 	console.log(props);
+	// }
 	const { books } = props;
 	console.log(books);
 
