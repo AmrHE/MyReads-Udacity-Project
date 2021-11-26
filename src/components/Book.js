@@ -3,29 +3,31 @@ import PropTypes from "prop-types";
 
 const Book = (props) => {
 	// console.log(props);
-	let author;
-	try {
-		author = props.book.authors;
-	} catch (error) {
-		author = "No Authors";
+	let { authors, name, img } = props.book;
+
+	// let author;
+	if (authors && authors.length === 1) {
+		authors = props.book.authors;
+	} else if (authors && authors.length > 1) {
+		authors = props.book.authors.join(", ");
+	} else {
+		authors = "No Authors";
 	}
 
-	let name;
-	try {
+	// let name;
+	if (name) {
 		name = props.book.title;
-	} catch (error) {
+	} else {
 		name = "";
 	}
 
-	let img;
-	try {
+	// let img;
+	if (props.book.imageLinks.thumbnail) {
 		img = props.book.imageLinks.thumbnail;
-	} catch (error) {
-		try {
-			img = props.book.imageLinks.SmallThumbnail;
-		} catch (error) {
-			img = "No Preview Image Found";
-		}
+	} else if (props.book.imageLinks.SmallThumbnail) {
+		img = props.book.imageLinks.SmallThumbnail;
+	} else {
+		img = "No Preview Image Found";
 	}
 
 	return (
@@ -56,7 +58,7 @@ const Book = (props) => {
 					</div>
 				</div>
 				<div className="book-title">{name}</div>
-				<div className="book-authors">{author}</div>
+				<div className="book-authors">{authors}</div>
 			</div>
 		</li>
 	);

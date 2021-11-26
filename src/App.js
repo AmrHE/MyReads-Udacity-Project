@@ -4,6 +4,7 @@ import * as BooksAPI from "./BooksAPI";
 import "./App.css";
 import Home from "./components/Home";
 import Search from "./components/Search";
+import NotFound from "./components/NotFound";
 
 class BooksApp extends React.Component {
 	state = {
@@ -14,14 +15,12 @@ class BooksApp extends React.Component {
 	};
 	removeFromShelf = (book, movedBook) => {
 		if (movedBook && movedBook.shelf === "currentlyReading") {
-			const index = this.state.currentlyReading.findIndex(
-				(b) => book.id === b.id
+			const newState = this.state.currentlyReading.filter(
+				(b) => b.id !== book.id
 			);
 
-			const deletedItem = this.state.currentlyReading.splice(index, 1);
-
 			this.setState({
-				currentlyReading: this.state.currentlyReading,
+				currentlyReading: newState,
 			});
 
 			// this.state.currentlyReading.map((book) => {
@@ -35,11 +34,9 @@ class BooksApp extends React.Component {
 		}
 
 		if (movedBook.shelf === "wantToRead") {
-			const index = this.state.wantToRead.findIndex((b) => book.id === b.id);
+			const newState = this.state.wantToRead.filter((b) => b.id !== book.id);
 
-			const deletedItem = this.state.wantToRead.splice(index, 1);
-
-			this.setState({ wantToRead: this.state.wantToRead });
+			this.setState({ wantToRead: newState });
 
 			// this.state.wantToRead.map((book) => {
 			// 	book.shelf = shelf;
@@ -51,11 +48,9 @@ class BooksApp extends React.Component {
 		}
 
 		if (movedBook.shelf === "read") {
-			const index = this.state.read.findIndex((b) => book.id === b.id);
+			const newState = this.state.read.filter((b) => b.id !== book.id);
 
-			const deletedItem = this.state.read.splice(index, 1);
-
-			this.setState({ read: this.state.read });
+			this.setState({ read: newState });
 
 			// this.state.read.map((book) => {
 			// 	book.shelf = shelf;
@@ -101,6 +96,8 @@ class BooksApp extends React.Component {
 				});
 				this.removeFromShelf(book, foundBook);
 				foundBook.shelf = shelf;
+			} else if (shelf === "none") {
+				this.removeFromShelf(book, foundBook);
 			}
 		} catch (error) {
 			// console.log("entered the else statement");
@@ -160,6 +157,7 @@ class BooksApp extends React.Component {
 							<Search books={this.state.books} moveBook={this.moveBook} />
 						)}
 					/>
+					<Route path="*" render={() => <NotFound />} />
 				</Switch>
 			</div>
 		);
