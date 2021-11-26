@@ -23,7 +23,7 @@ $ npm start
 
 # Book.js: Functional stateless component that renders a single book and used in the Shelf.js to loop over the books and display them
 
-# Search.js: Contaain our search bar, and renders the searched books
+# Search.js: Contains our search bar, and renders the searched books
 
 # AddBook.js: A component that contains a button that redirects to the search page.js
 
