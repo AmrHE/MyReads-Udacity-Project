@@ -14,7 +14,7 @@ $ npm start
 ```
 
 ## Components:-
-
+```
 # App.js: Contains State, Routes, and the whole App
 
 # Home.js: Functional stateless component that renders the three shelves (Currently reading, Want to read, Read)
@@ -28,3 +28,4 @@ $ npm start
 # AddBook.js: A component that contains a button that redirects to the search page.js
 
 # NotFound.js: Displays an error page if we hit another route rather than our predefined ones
+```
